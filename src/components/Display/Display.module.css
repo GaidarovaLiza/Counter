@@ -1,0 +1,14 @@
+.border {
+    border: solid 1px;
+    height: 30px;
+    width: 80px;
+    margin: 0 auto;
+}
+
+.red {
+    background-color: red;
+    color: white;
+    height: 30px;
+    width: 80px;
+    display: block;
+}
