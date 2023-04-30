@@ -3,6 +3,7 @@ import './App.css';
 import {Display} from "./components/Display/Display";
 import {SuperButton} from "./components/SuperButton/SupperButton";
 import {ADD_NAME, INITIAL_COUNT, MAX_COUNT, RESET_NAME} from "./components/constants";
+import {StartValue} from "./components/StartValue/StartValue";
 
 
 function App() {
@@ -16,10 +17,17 @@ function App() {
     const resetCount = () => setCount(0)
 
     return (
-        <div className="App">
-            <Display count={count}/>
-            <SuperButton disable={count === MAX_COUNT} callback={incCount} name={ADD_NAME}/>
-            <SuperButton disable={count === INITIAL_COUNT} callback={resetCount} name={RESET_NAME}/>
+        <div className='wrapper'>
+            <div>
+                <StartValue/>
+            </div>
+            <div className="counter">
+                <Display count={count}/>
+                <div className='buttonWrapper'>
+                    <SuperButton disable={count === MAX_COUNT} callback={incCount} name={ADD_NAME}/>
+                    <SuperButton disable={count === INITIAL_COUNT} callback={resetCount} name={RESET_NAME}/>
+                </div>
+            </div>
         </div>
     );
 }

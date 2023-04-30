@@ -1,3 +1,5 @@
+import s from './SuperButton.module.css'
+
 type PropsType = {
     name: string
     callback: () => void
@@ -6,6 +8,6 @@ type PropsType = {
 
 export const SuperButton = (props: PropsType) => {
     return (
-        <button disabled={props.disable} onClick={props.callback}>{props.name}</button>
+        <button className={s.button} disabled={props.disable} onClick={props.callback}>{props.name}</button>
     )
 }

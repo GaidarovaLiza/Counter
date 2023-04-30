@@ -1,14 +1,28 @@
 .border {
-    border: solid 1px;
-    height: 30px;
-    width: 80px;
-    margin: 0 auto;
+    /*border: solid 1px;*/
+    /*height: 30px;*/
+    /*width: 80px;*/
+    /*margin: 0 auto;*/
 }
 
 .red {
-    background-color: red;
-    color: white;
-    height: 30px;
-    width: 80px;
-    display: block;
+    text-align: center;
+    font-size: 72px;
+    font-weight: bold;
+    color: red;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2)
 }
+
+.value {
+    margin: 0 auto;
+    height: 150px;
+    width: 390px;
+    text-align: center;
+    font-size: 72px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border: 3px solid #008080;
+    border-radius: 10px;
+}
+

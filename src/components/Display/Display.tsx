@@ -9,9 +9,8 @@ export const Display = (props: PropsType) => {
     const finalStyle = props.count == MAX_COUNT ? s.red : ''
 
     return (
-        <div className={s.border}>
+        <div className={s.value}>
             <span className={finalStyle}>{props.count}</span>
-
         </div>
     )
 }
