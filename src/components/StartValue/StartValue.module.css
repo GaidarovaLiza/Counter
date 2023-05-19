@@ -16,3 +16,41 @@
     height: 90px;
     width: 390px;
 }
+
+.value {
+    margin: 0 auto;
+    height: 150px;
+    width: 390px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border: 3px solid #008080;
+    border-radius: 10px;
+}
+
+
+.textAndInput {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.input {
+    height: 20px;
+    margin-top: 24px; /* снижаем отступ от верхней границы */
+
+}
+
+.error {
+    border-color: red;
+}
+
+.errorText {
+    font-size: 10px;
+    color: red;
+    display: block;
+    margin-left: 155px; /* добавлено */
+
+}
