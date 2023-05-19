@@ -1,13 +1,20 @@
 import s from './SuperButton.module.css'
+import React from "react";
 
-type PropsType = {
+type SuperButtonPropsType = {
     name: string
     callback: () => void
     disable: boolean
 }
 
-export const SuperButton = (props: PropsType) => {
+export const SuperButton: React.FC<SuperButtonPropsType> = (
+    {
+        name,
+        callback,
+        disable
+    }
+) => {
     return (
-        <button className={s.button} disabled={props.disable} onClick={props.callback}>{props.name}</button>
+        <button className={s.button} disabled={disable} onClick={callback}>{name}</button>
     )
 }

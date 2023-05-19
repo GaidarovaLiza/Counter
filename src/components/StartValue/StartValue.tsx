@@ -1,9 +1,9 @@
 import s from './StartValue.module.css'
 import {SuperButton} from "../SuperButton/SupperButton";
-import {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import {SET_NAME} from "../constants";
 
-type PropsType = {
+type StartValuePropsType = {
     minValue: number
     maxValue: number
     setMinValue: (minValue: number) => void
@@ -11,21 +11,29 @@ type PropsType = {
     setCount: (count: number) => void
 }
 
-export const StartValue = (props: PropsType) => {
+export const StartValue: React.FC<StartValuePropsType> = (
+    {
+        minValue,
+        maxValue,
+        setMinValue,
+        setMaxValue,
+        setCount,
+    }
+) => {
     const [error, setError] = useState(false)
 
 
     const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        props.setMinValue(parseInt(e.currentTarget.value))
+       setMinValue(parseInt(e.currentTarget.value))
     }
 
     const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        props.setMaxValue(parseInt(e.currentTarget.value))
+       setMaxValue(parseInt(e.currentTarget.value))
     }
 
     const setHandler = () => {
-        if (props.maxValue > props.minValue) {
-            props.setCount(props.minValue)
+        if (maxValue > minValue) {
+            setCount(minValue)
             setError(false)
         } else {
             setError(true)
@@ -40,12 +48,12 @@ export const StartValue = (props: PropsType) => {
             <div className={s.value}>
                 <div className={s.textAndInput}>
                     <p>MAX VALUE:</p>
-                    <input value={props.maxValue} onChange={maxValueHandler} className={errorClassStyle} type="number"/>
+                    <input value={maxValue} onChange={maxValueHandler} className={errorClassStyle} type="number"/>
                 </div>
                 {error && <div className={s.errorText}>Max value should be more then Min value!</div>}
                 <div className={s.textAndInput}>
                     <p>START VALUE:</p>
-                    <input value={props.minValue} onChange={minValueHandler} className={s.input} type="number"/>
+                    <input value={minValue} onChange={minValueHandler} className={s.input} type="number"/>
                 </div>
             </div>
             <div className={s.buttonWrapper}>

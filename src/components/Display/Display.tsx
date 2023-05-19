@@ -3,32 +3,40 @@ import {ADD_NAME, INITIAL_COUNT, MAX_COUNT, RESET_NAME} from "../constants";
 import React, {useState} from "react";
 import {SuperButton} from "../SuperButton/SupperButton";
 
-type PropsType = {
+type DisplayPropsType = {
     count: number
     minValue: number
     maxValue: number
     setCount: (count: number) => void
 }
 
-export const Display = (props: PropsType) => {
+export const Display: React.FC<DisplayPropsType> = (
+    {
+        count,
+        maxValue,
+        minValue,
+        setCount
+    }
+) => {
 
 
     const incCount = () => {
-        let newValue = props.count <= props.maxValue ? props.count + 1 : props.count
-        props.setCount(newValue)
+        let newValue = count <= maxValue ? count + 1 : count
+        setCount(newValue)
     }
 
-    const resetCount = () => props.setCount(props.minValue)
-    const finalStyle = props.count === props.maxValue ? s.red : ''
+    const resetCount = () => setCount(minValue)
+
+    const finalStyle = count === maxValue ? s.red : ''
 
     return (
         <div>
             <div className={s.value}>
-                <span className={finalStyle}>{props.count}</span>
+                <span className={finalStyle}>{count}</span>
             </div>
             <div className='buttonWrapper'>
-                <SuperButton disable={props.count === props.maxValue} callback={incCount} name={ADD_NAME}/>
-                <SuperButton disable={props.count === props.minValue} callback={resetCount} name={RESET_NAME}/>
+                <SuperButton disable={count === maxValue} callback={incCount} name={ADD_NAME}/>
+                <SuperButton disable={count === minValue} callback={resetCount} name={RESET_NAME}/>
             </div>
         </div>
     )
