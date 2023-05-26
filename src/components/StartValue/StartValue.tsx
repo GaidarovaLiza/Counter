@@ -2,6 +2,7 @@ import s from './StartValue.module.css'
 import {SuperButton} from "../SuperButton/SupperButton";
 import React, {ChangeEvent, useState} from "react";
 import {SET_NAME} from "../constants";
+import {SuperInput} from "../SuperInput/SuperInput";
 
 type StartValuePropsType = {
     minValue: number
@@ -20,41 +21,54 @@ export const StartValue: React.FC<StartValuePropsType> = (
         setCount,
     }
 ) => {
-    const [error, setError] = useState(false)
+    const [minError, setMinError] = useState(false)
+    const [maxError, setMaxError] = useState(false)
 
 
     const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-       setMinValue(parseInt(e.currentTarget.value))
+        let minValue = parseInt(e.currentTarget.value)
+        if (minValue > 0) {
+            setMinValue(minValue)
+            setMinError(false)
+        } else {
+            setMinError(true)
+        }
     }
 
     const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-       setMaxValue(parseInt(e.currentTarget.value))
+        let maxValue = parseInt(e.currentTarget.value)
+        if (maxValue > 0) {
+            setMaxValue(maxValue)
+            setMaxError(false)
+        } else {
+            setMaxError(true)
+        }
     }
 
     const setHandler = () => {
         if (maxValue > minValue) {
             setCount(minValue)
-            setError(false)
-        } else {
-            setError(true)
-
+            setMinError(false)
+            setMaxError(false)
         }
     }
 
-    const errorClassStyle = error ? `${s.error} ${s.input}` : s.input;
+    const minErrorClassStyle = minError ? `${s.error} ${s.input}` : s.input;
+    const maxErrorClassStyle = maxError ? `${s.error} ${s.input}` : s.input;
 
     return (
         <div className={s.counter}>
             <div className={s.value}>
                 <div className={s.textAndInput}>
                     <p>MAX VALUE:</p>
-                    <input value={maxValue} onChange={maxValueHandler} className={errorClassStyle} type="number"/>
+                    <SuperInput callback={maxValueHandler} value={maxValue} style={maxErrorClassStyle}/>
                 </div>
-                {error && <div className={s.errorText}>Max value should be more then Min value!</div>}
+                {maxError && <span className={s.errorText}>Incorrect value!</span>}
                 <div className={s.textAndInput}>
                     <p>START VALUE:</p>
-                    <input value={minValue} onChange={minValueHandler} className={s.input} type="number"/>
+                    <SuperInput callback={minValueHandler} value={minValue} style={minErrorClassStyle}/>
                 </div>
+                {minError && <span className={s.errorText}>Incorrect value!</span>}
             </div>
             <div className={s.buttonWrapper}>
                 <SuperButton name={SET_NAME} callback={setHandler} disable={false}/>

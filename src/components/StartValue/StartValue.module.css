@@ -18,7 +18,7 @@
 }
 
 .value {
-    margin: 0 auto;
+    margin: 0 auto 5px;
     height: 150px;
     width: 390px;
     text-align: center;
@@ -33,13 +33,17 @@
 
 .textAndInput {
     display: flex;
-    justify-content: space-around;
-
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
 }
 
 .input {
     height: 20px;
-    margin-top: 24px; /* снижаем отступ от верхней границы */
+    max-width: 150px;
+    margin-top: 5px;
+    flex: 1;
+    margin-right: 25px;
 
 }
 
@@ -51,6 +55,5 @@
     font-size: 10px;
     color: red;
     display: block;
-    margin-left: 155px; /* добавлено */
-
+    margin-left: 155px;
 }

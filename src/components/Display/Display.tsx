@@ -1,6 +1,6 @@
 import s from './Display.module.css'
 import {ADD_NAME, INITIAL_COUNT, MAX_COUNT, RESET_NAME} from "../constants";
-import React, {useState} from "react";
+import React from "react";
 import {SuperButton} from "../SuperButton/SupperButton";
 
 type DisplayPropsType = {
