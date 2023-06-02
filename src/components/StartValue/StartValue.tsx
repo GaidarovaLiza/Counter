@@ -1,15 +1,16 @@
 import s from './StartValue.module.css'
 import {SuperButton} from "../SuperButton/SupperButton";
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, Dispatch, useState} from "react";
 import {SET_NAME} from "../constants";
 import {SuperInput} from "../SuperInput/SuperInput";
+import {setValueAC} from "../../store/Reducers/CountReducer";
 
 type StartValuePropsType = {
     minValue: number
     maxValue: number
     setMinValue: (minValue: number) => void
     setMaxValue: (maxValue: number) => void
-    setCount: (count: number) => void
+    dispatch: Dispatch<{ type: "SET-VALUE"; payload: { minValue: number; } }>
 }
 
 export const StartValue: React.FC<StartValuePropsType> = (
@@ -18,7 +19,7 @@ export const StartValue: React.FC<StartValuePropsType> = (
         maxValue,
         setMinValue,
         setMaxValue,
-        setCount,
+        dispatch,
     }
 ) => {
     const [minError, setMinError] = useState(false)
@@ -46,11 +47,7 @@ export const StartValue: React.FC<StartValuePropsType> = (
     }
 
     const setHandler = () => {
-        if (maxValue > minValue) {
-            setCount(minValue)
-            setMinError(false)
-            setMaxError(false)
-        }
+        maxValue > minValue && dispatch((setValueAC(minValue)))
     }
 
     const minErrorClassStyle = minError ? `${s.error} ${s.input}` : s.input;

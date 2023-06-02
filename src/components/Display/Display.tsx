@@ -1,13 +1,15 @@
 import s from './Display.module.css'
 import {ADD_NAME, INITIAL_COUNT, MAX_COUNT, RESET_NAME} from "../constants";
-import React from "react";
+import React, {Dispatch} from "react";
 import {SuperButton} from "../SuperButton/SupperButton";
+import {CounterStateType} from "../../App";
+import {incValueAC, resetValueAC} from "../../store/Reducers/CountReducer";
 
 type DisplayPropsType = {
-    count: number
+    count: CounterStateType
     minValue: number
     maxValue: number
-    setCount: (count: number) => void
+    dispatch: (value: any) => void
 }
 
 export const Display: React.FC<DisplayPropsType> = (
@@ -15,28 +17,27 @@ export const Display: React.FC<DisplayPropsType> = (
         count,
         maxValue,
         minValue,
-        setCount
+        dispatch
     }
 ) => {
 
 
     const incCount = () => {
-        let newValue = count <= maxValue ? count + 1 : count
-        setCount(newValue)
+        dispatch(incValueAC(count.count, maxValue))
     }
 
-    const resetCount = () => setCount(minValue)
+    const resetCount = () => dispatch(resetValueAC(minValue))
 
-    const finalStyle = count === maxValue ? s.red : ''
+    const finalStyle = count.count === maxValue ? s.red : ''
 
     return (
         <div>
             <div className={s.value}>
-                <span className={finalStyle}>{count}</span>
+                <span className={finalStyle}>{count.count}</span>
             </div>
             <div className='buttonWrapper'>
-                <SuperButton disable={count === maxValue} callback={incCount} name={ADD_NAME}/>
-                <SuperButton disable={count === minValue} callback={resetCount} name={RESET_NAME}/>
+                <SuperButton disable={count.count === maxValue} callback={incCount} name={ADD_NAME}/>
+                <SuperButton disable={count.count === minValue} callback={resetCount} name={RESET_NAME}/>
             </div>
         </div>
     )
