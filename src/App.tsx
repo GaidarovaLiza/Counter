@@ -8,28 +8,34 @@ import {AppRootStateType} from "./store/state";
 
 export type CounterStateType = {
     count: number;
-    minValue: number; // Define the minValue property
-    maxValue: number; // Define the minValue property
+    minValue: number;
+    maxValue: number;
     minError: boolean;
     maxError: boolean;
 }
 
+export type MinValueStateType = {
+    minValue: number
+    minError: boolean
+}
+
+export type MaxValueStateType = {
+    maxValue: number
+    maxError: boolean
+}
+
 function App() {
     let count = useSelector<AppRootStateType, CounterStateType>(state => state.count)
+    let minValue = useSelector<AppRootStateType, MinValueStateType>(state => state.minValue)
+    let maxValue = useSelector<AppRootStateType, MaxValueStateType>(state => state.maxValue)
 
     const dispatch = useDispatch()
-
-    const [minValue, setMinValue] = useState<number>(INITIAL_COUNT)
-    const [maxValue, setMaxValue] = useState<number>(MAX_COUNT)
-
 
     return (
         <div className='wrapper'>
             <div>
                 <StartValue minValue={minValue}
                             maxValue={maxValue}
-                            setMinValue={setMinValue}
-                            setMaxValue={setMaxValue}
                             dispatch={dispatch}
                 />
             </div>
