@@ -25,25 +25,13 @@ export type MaxValueStateType = {
 }
 
 function App() {
-    let count = useSelector<AppRootStateType, CounterStateType>(state => state.count)
-    let minValue = useSelector<AppRootStateType, MinValueStateType>(state => state.minValue)
-    let maxValue = useSelector<AppRootStateType, MaxValueStateType>(state => state.maxValue)
-
-    const dispatch = useDispatch()
-
     return (
         <div className='wrapper'>
             <div>
-                <StartValue minValue={minValue}
-                            maxValue={maxValue}
-                            dispatch={dispatch}
-                />
+                <StartValue/>
             </div>
             <div className="counter">
-                <Display minValue={minValue}
-                         maxValue={maxValue}
-                         count={count}
-                         dispatch={dispatch}/>
+                <Display/>
             </div>
         </div>
     );

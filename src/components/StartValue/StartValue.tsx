@@ -7,20 +7,14 @@ import {setValueAC} from "../../store/Reducers/CountReducer";
 import {MaxValueStateType, MinValueStateType} from "../../App";
 import {setMinErrorAC, setMinValueAC} from "../../store/Reducers/MinValueReducer";
 import {setMaxErrorAC, setMaxValueAC} from "../../store/Reducers/MaxValueReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../store/state";
 
-type StartValuePropsType = {
-    minValue: MinValueStateType
-    maxValue: MaxValueStateType
-    dispatch: Dispatch<any>
-}
+export const StartValue = () => {
+    let minValue = useSelector<AppRootStateType, MinValueStateType>(state => state.minValue)
+    let maxValue = useSelector<AppRootStateType, MaxValueStateType>(state => state.maxValue)
 
-export const StartValue: React.FC<StartValuePropsType> = (
-    {
-        minValue,
-        maxValue,
-        dispatch,
-    }
-) => {
+    const dispatch = useDispatch()
 
     const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         let minValue = parseInt(e.currentTarget.value);

@@ -4,23 +4,16 @@ import React, {Dispatch} from "react";
 import {SuperButton} from "../SuperButton/SupperButton";
 import {CounterStateType, MaxValueStateType, MinValueStateType} from "../../App";
 import {incValueAC, resetValueAC} from "../../store/Reducers/CountReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../store/state";
 
-type DisplayPropsType = {
-    count: CounterStateType
-    minValue: MinValueStateType
-    maxValue: MaxValueStateType
-    dispatch: (value: any) => void
-}
 
-export const Display: React.FC<DisplayPropsType> = (
-    {
-        count,
-        maxValue,
-        minValue,
-        dispatch
-    }
-) => {
+export const Display = () => {
+    let count = useSelector<AppRootStateType, CounterStateType>(state => state.count)
+    let minValue = useSelector<AppRootStateType, MinValueStateType>(state => state.minValue)
+    let maxValue = useSelector<AppRootStateType, MaxValueStateType>(state => state.maxValue)
 
+    const dispatch = useDispatch()
 
     const incCount = () => dispatch(incValueAC(count.count, maxValue.maxValue))
 
